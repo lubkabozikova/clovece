@@ -83,15 +83,17 @@ function drawPlan(Colors, Centers, Homes, StartGoals){
     }
 }
 
-var svgMan;
-function drawMan(Color,Place,){
+var svgMan = [[],[],[],[]];
+function drawMan(Place,ColorNumber,ManNumber){
     var Coordinates = Place.split(",");
-    svgMan = document.createElementNS(SVG_NS, "svg");
-        svgMan.setAttribute("x",(+Coordinates[0]-15).toString());
-        svgMan.setAttribute("y",(+Coordinates[1]-35).toString());
-        svgMan.setAttribute("width","30")
-    svgHra.appendChild(svgMan);
+    
+    svgMan[ManNumber][ColorNumber] = document.createElementNS(SVG_NS, "svg");
+        svgMan[ManNumber][ColorNumber].setAttribute("x",(+Coordinates[0]-15).toString());
+        svgMan[ManNumber][ColorNumber].setAttribute("y",(+Coordinates[1]-35).toString());
+        svgMan[ManNumber][ColorNumber].setAttribute("width","30")
+    svgHra.appendChild(svgMan[ManNumber][ColorNumber]);
 
+    var Color = Colors[ColorNumber];
     var Ellipse = document.createElementNS(SVG_NS, "ellipse");
         Ellipse.setAttribute("cx","15");
         Ellipse.setAttribute("cy","40");
@@ -100,7 +102,7 @@ function drawMan(Color,Place,){
         Ellipse.setAttribute("fill",Color);
         Ellipse.setAttribute("stroke","black");
         Ellipse.setAttribute("stroke-width","3");
-    svgMan.appendChild(Ellipse);
+    svgMan[ManNumber][ColorNumber].appendChild(Ellipse);
     var Head = document.createElementNS(SVG_NS, "circle");
         Head.setAttribute("cx","15");
         Head.setAttribute("cy","15");
@@ -108,13 +110,13 @@ function drawMan(Color,Place,){
         Head.setAttribute("fill",Color);
         Head.setAttribute("stroke","black");
         Head.setAttribute("stroke-width","3");
-    svgMan.appendChild(Head);
+    svgMan[ManNumber][ColorNumber].appendChild(Head);
     var Polygon = document.createElementNS(SVG_NS, "polygon");
         Polygon.setAttribute("points","0,40 30,40 15,15");
         Polygon.setAttribute("fill",Color);
         Polygon.setAttribute("stroke","black");
         Polygon.setAttribute("stroke-width","3");
-    svgMan.appendChild(Polygon);
+    svgMan[ManNumber][ColorNumber].appendChild(Polygon);
     var Line = document.createElementNS(SVG_NS, "line");
         Line.setAttribute("x1","3");
         Line.setAttribute("y1","40");
@@ -122,7 +124,7 @@ function drawMan(Color,Place,){
         Line.setAttribute("y2","40");
         Line.setAttribute("stroke", Color);
         Line.setAttribute("stroke-width", "4");
-    svgMan.appendChild(Line);
+    svgMan[ManNumber][ColorNumber].appendChild(Line);
     var Circle = document.createElementNS(SVG_NS, "circle");
         Circle.setAttribute("cx","15");
         Circle.setAttribute("cy","15");
@@ -130,12 +132,12 @@ function drawMan(Color,Place,){
         Circle.setAttribute("fill",Color);
         Circle.setAttribute("stroke",Color);
         Circle.setAttribute("stroke-width","3");
-    svgMan.appendChild(Circle);
+    svgMan[ManNumber][ColorNumber].appendChild(Circle);
     var Light = document.createElementNS(SVG_NS, "polygon");
         Light.setAttribute("points","8,38 12,39 13,25");
         Light.setAttribute("fill","white");
         Light.setAttribute("stroke","white")
-    svgMan.appendChild(Light);
+    svgMan[ManNumber][ColorNumber].appendChild(Light);
 }
 
 
@@ -147,7 +149,7 @@ function moveMan(Man,Place){
 }
 
 drawPlan(Colors, Centers, Homes, StartGoals);
-drawMan("red",Centers[0]);
+drawMan(Centers[0],0,0);
 
 // i = 0;
 // setInterval(() => {
