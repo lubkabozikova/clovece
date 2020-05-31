@@ -1,10 +1,10 @@
 .divHra {
     width: 700px;
     height: 700px;
-    background-color: rgba(253, 255, 127, 0.623);
+    /* background-color: rgba(253, 255, 127, 0.623); */
 }
-/* .svgHra {
-    fill: yellow;
+.svgHra {
     stroke: black;
     stroke-width: 3;
-} */
+    background-color: rgba(253, 255, 127, 0.623);
+}
