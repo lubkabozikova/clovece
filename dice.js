@@ -1,39 +1,28 @@
 const Dice = {};
 
 Dice.Dots = [
-        {cx: "30", cy: "30"},
-        {cx: "20", cy: "40"},
-        {cx: "40", cy: "20"},
-        {cx: "20", cy: "20"},
-        {cx: "40", cy: "40"},
-        {cx: "20", cy: "30"},
-        {cx: "40", cy: "30"},
+        {cx:"30", cy:"30", r:"2"},
+        {cx:"20", cy:"40", r:"2"},
+        {cx:"40", cy:"20", r:"2"},
+        {cx:"20", cy:"20", r:"2"},
+        {cx:"40", cy:"40", r:"2"},
+        {cx:"20", cy:"30", r:"2"},
+        {cx:"40", cy:"30", r:"2"}
     ];
 
 Dice.Number = 1;
 
 Dice.create = () => {
-    const SvgDice = document.createElementNS(SVG_NS, "svg");
-        SvgDice.setAttribute("x","320");
-        SvgDice.setAttribute("y","320");
+    const SvgDice = createSvg("svg",{x:"320", y:"320"})
 
-    const Rect = document.createElementNS(SVG_NS,"rect");
-        Rect.setAttribute("x","5");        
-        Rect.setAttribute("y","5");
-        Rect.setAttribute("width","50");
-        Rect.setAttribute("height","50");
-        Rect.setAttribute("rx","10");
-        Rect.setAttribute("ry","10");
-        Rect.setAttribute("stroke","#b35900");
-        Rect.setAttribute("stroke-width","5");
-        Rect.setAttribute("fill","#ffcc99");
-    SvgDice.appendChild(Rect);
+    const Rect = {
+        x:"5", y:"5", rx:"10", ry:"10", width:"50", height:"50",
+        stroke:"#b35900", fill:"#ffcc99", "stroke-width": "5"
+    }
+    SvgDice.appendChild(createSvg("rect",Rect));
     
     for (const Dot of Dice.Dots) {
-        Dot.svgElement = document.createElementNS(SVG_NS,"circle");
-            Dot.svgElement.setAttribute("r","2");
-            Dot.svgElement.setAttribute("cx", Dot.cx);
-            Dot.svgElement.setAttribute("cy", Dot.cy);
+        Dot.svgElement = createSvg("circle",Dot);
         SvgDice.appendChild(Dot.svgElement);
     }
     Dice.set();

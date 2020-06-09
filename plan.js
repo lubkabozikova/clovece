@@ -51,24 +51,17 @@ Plan.Path = Plan.createPath();
 
 Plan.draw = () => {
         //encapsulating svg
-    const SvgPlan = document.createElementNS(SVG_NS,"svg");
+    const SvgPlan = createSvg("svg",{});
         // ciara, zaklad planu
     let PolygonPoints = Plan.Centers[0];
     for (const Center of Plan.Centers) {
         PolygonPoints = PolygonPoints + " " + Center;
         }
-    const PlanCiara = document.createElementNS(SVG_NS, "polygon");
-        PlanCiara.setAttribute("points",PolygonPoints);
-        PlanCiara.setAttribute("fill-opacity","0");
-    SvgPlan.appendChild(PlanCiara);
+    SvgPlan.appendChild(createSvg("polygon",{points:PolygonPoints, "fill-opacity":"0"}));
+    
 
     function newCircle(cx, cy, r, fill){
-        const PlanCircle = document.createElementNS(SVG_NS, "circle");
-            PlanCircle.setAttribute("cx",cx);
-            PlanCircle.setAttribute("cy",cy);
-            PlanCircle.setAttribute("r",r);
-            PlanCircle.setAttribute("fill", fill);
-        SvgPlan.appendChild(PlanCircle);
+        SvgPlan.appendChild(createSvg("circle",{"cx":cx,"cy":cy,"r":r,"fill":fill}));
     }
 
         // kruzky na plane

@@ -1,10 +1,6 @@
 const DivHra = document.createElement("div");
 DivHra.className = "divHra";
-// const SVG_NS = 'http://www.w3.org/2000/svg';
-const SvgClovece = document.createElementNS(SVG_NS, "svg");
-    SvgClovece.setAttribute("class","svgHra");
-    SvgClovece.setAttribute("height","100%");
-    SvgClovece.setAttribute("width","100%");
+const SvgClovece = createSvg("svg", {class:"svgHra",height:"100%",width:"100%"});
 
 document.body.appendChild(DivHra);
 DivHra.appendChild(SvgClovece);
@@ -17,5 +13,7 @@ SvgClovece.appendChild(Dice.draw());
 Men.create();
 SvgClovece.appendChild(Men.draw());
 
-Dice.roll(Player.move);
+SvgClovece.appendChild(Note.draw());
+
+// Dice.roll(Player.move);
 
