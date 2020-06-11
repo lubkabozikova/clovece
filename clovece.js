@@ -1,19 +1,20 @@
-const DivHra = document.createElement("div");
-DivHra.className = "divHra";
-const SvgClovece = createSvg("svg", {class:"svgHra",height:"100%",width:"100%"});
+// const DivHra = document.createElement("div");
+// DivHra.className = "divHra";
+// const SvgClovece = createSvg("svg", {class:"svgHra",height:"100%",width:"100%"});
 
-document.body.appendChild(DivHra);
-DivHra.appendChild(SvgClovece);
+// document.body.appendChild(DivHra);
+// DivHra.appendChild(SvgClovece);
 
-Men.getValues(Plan.Colors,Plan.Path);
-Player.getValues(Plan.Colors);
+const Clovece = new createClovece();
+const Dice = new createDice();
+const Plan = new createPlan();
+const Men = new createMen(Plan.colors(),Plan.path());
+const Player = new createPlayer(Plan.colors());
+const Note = new createNote();
 
-SvgClovece.appendChild(Plan.draw());
-SvgClovece.appendChild(Dice.draw());
-Men.create();
-SvgClovece.appendChild(Men.draw());
+// SvgClovece.appendChild(Plan.draw());
+// SvgClovece.appendChild(Men.draw());
+// SvgClovece.appendChild(Dice.draw());
 
-SvgClovece.appendChild(Note.draw());
-
-// Dice.roll(Player.move);
-
+Dice.roll(Plan.colors()[0],Player.move);
+// SvgClovece.appendChild(Note.drawWinner("red"));
