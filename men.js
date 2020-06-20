@@ -2,11 +2,7 @@ function createMen (Colors,Path) {
     let drawMan = (Color,Place) => {
         const Coordinates = Place.split(",");
         const SvgMan = createSvg("svg", {width:"30",x:(+Coordinates[0]-15).toString(),y:(+Coordinates[1]-35).toString()});
-        SvgMan.appendChild(createSvg("ellipse", {cx:"15",cy:"40",rx:"15",ry:"5",fill:Color}));
-        SvgMan.appendChild(createSvg("circle", {cx:"15",cy:"15",r:"10",fill:Color}));
-        SvgMan.appendChild(createSvg("polygon", {points:"0,40 30,40 15,15",fill:Color}));
-        SvgMan.appendChild(createSvg("line", {x1:"3",y1:"40",x2:"27",y2:"40",stroke:Color,"stroke-width":"4"}));
-        SvgMan.appendChild(createSvg("circle", {cx:"15",cy:"15",r:"7",fill:Color,stroke:Color}));
+        SvgMan.appendChild(createSvg("path", {d:"M 0,40 a 15,5 0 1,0 30,0 l -10,-16 a 11,11 0 1,0 -10,0 Z",fill:Color}));
         SvgMan.appendChild(createSvg("polygon", {points:"8,38 12,39 13,25",fill:"white",stroke:"white"}));
         return SvgMan;
     }
@@ -17,7 +13,7 @@ function createMen (Colors,Path) {
         SvgMen = createSvg("svg", {});
         for (const Color of Colors) {
             Men[Color] = [{},{},{},{}];
-            for (let index = 0; index < 4; index++) {
+            for (index of [0,1,2,3]) {
                 Men[Color][index].picture = drawMan(Color,Path[Color][index]);
                 Men[Color][index].place = index;
                 Men[Color][index].color = Color;
@@ -25,10 +21,14 @@ function createMen (Colors,Path) {
             }
         }
     }
-    
-    // this.draw = () => {
-    //     return SvgMen;
-    // }
+
+    this.set = () => {
+        for (const Color of Colors) {
+            for (index of [0,1,2,3]) {
+                this.move(Men[Color][index],index);
+            }
+        }
+    }
     
     this.throwOut = (Man) => {
         for (const Color of Colors) {

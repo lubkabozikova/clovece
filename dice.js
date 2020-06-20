@@ -46,15 +46,10 @@ function createDice () {
         }
     }
     
-    // this.draw = () => {
-    //     return SvgDice;
-    // }
-    
     this.roll = (Color,callback) => {
         let DiceRuns = false;
         let RunDice = null;
-        let SvgNote = Note.drawToPlay(Color);
-        Clovece.appendToPlan(SvgNote);
+        setTimeout( ()=>{Note.showToPlay(Color);},100);
         
         function click () {
             
@@ -64,7 +59,7 @@ function createDice () {
                 SvgDice.removeEventListener("click",click);
                 callback(DiceNumber);
             } else {
-                Clovece.removeFromPlan(SvgNote);
+                Note.hideToPlay();
                 RunDice = setInterval(() => {
                     DiceNumber++;
                     if (DiceNumber === 7) {DiceNumber = 1};

@@ -82,9 +82,6 @@ function createPlan () {
         }
     }
     
-    // this.draw = () => {
-    //     return SvgPlan;
-    // }
     this.path = () => {
         return Path;
     }

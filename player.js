@@ -5,7 +5,7 @@ function createPlayer (Colors) {
 
     let afterMove = (HasMoved,WasSix) => {
         if (Men.finished(Colors[PlayerToMove])) {
-            Clovece.appendToPlan(Note.drawWinner(Colors[PlayerToMove]));
+            Note.showWinner(Colors[PlayerToMove]);
             return;
         }
         if (HasMoved && !WasSix) {
