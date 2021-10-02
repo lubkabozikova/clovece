@@ -1,25 +1,9 @@
-var divHra = document.createElement("div");
-    divHra.className = "divHra";
+const Clovece = new createClovece();
 
-// var svgHra = document.createElement("svg");
-//     svgHra.className = "svgHra";
+const Note = new createNote();
+const Plan = new createPlan();
+const Men = new createMen(Plan.colors(),Plan.path());
+const Dice = new createDice();
+const Player = new createPlayer(Plan.colors());
 
-// var planCircle = document.createElement("circle");
-//     // planCircle.className = "plan";
-//     planCircle.cx = "10";
-//     planCircle.cy = "10";
-//     planCircle.r = "5";
-    
-
-
-document.body.appendChild(divHra);
-// divHra.appendChild(svgHra);
-// svgHra.setAttribute("width", "100");
-// svgHra.setAttribute("height", "100");
-// svgHra.appendChild(planCircle);
-// planCircle.setAttribute("cx", "10");
-// planCircle.setAttribute("cy", "10");
-// planCircle.setAttribute("r", "5");
-// planCircle.setAttribute("fill", "white");
-// planCircle.setAttribute("stroke", "black");
-// planCircle.setAttribute("stroke-width", "2");
+Dice.roll(Plan.colors()[0],Player.move);
